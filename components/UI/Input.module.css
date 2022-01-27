@@ -1,0 +1,42 @@
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.input-label {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.input-section textarea {
+  max-width: 100%;
+  max-height: 6rem;
+  height: 6rem;
+  min-width: 100%;
+  min-height: 6rem;
+}
+
+.input-section input,
+.input-section textarea {
+  outline: none;
+  border: 2px solid #ccc;
+  font-size: 1.35rem;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.input-section input:focus,
+.input-section textarea:focus {
+  background-color: var(--color2);
+  border: 2px solid var(--color1);
+}
+
+p.input-error {
+  font-size: 1.15rem;
+  padding-inline: 0;
+  margin: 0.5rem 0;
+  color: var(--errorColor);
+}
