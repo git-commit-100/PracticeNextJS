@@ -70,7 +70,7 @@ function MeetupForm(props) {
   }
 
   return (
-    <Card>
+    <Card className={styles["form-card"]}>
       <form onSubmit={handleFormSubmit}>
         <Input
           type="input"

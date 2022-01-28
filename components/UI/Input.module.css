@@ -26,6 +26,7 @@
   font-size: 1.35rem;
   padding: 0.25rem 0.5rem;
   transition: all 0.2s ease;
+  font-family: "Montserrat", sans-serif;
 }
 
 .input-section input:focus,

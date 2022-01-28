@@ -1,5 +1,10 @@
+.form-card > form {
+  margin: 1rem 1.5rem;
+}
+
 .actions {
   margin: 1rem 0;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: flex-end;
 }

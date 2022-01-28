@@ -4,15 +4,15 @@ import Link from "next/link";
 
 function Navigation() {
   return (
-    <header className={styles["nav-div"]}>
+    <header className={styles["header"]}>
       <h2 className={styles["logo"]}>Meetups Manager</h2>
       <nav>
         <ul>
           <li>
-            <Link to="/">All Meetups</Link>
+            <Link href="/">All Meetups</Link>
           </li>
           <li>
-            <Link to="/new-meetup">Add New Meetup</Link>
+            <Link href="/new-meetup">Add New Meetup</Link>
           </li>
         </ul>
       </nav>

@@ -1,8 +1,14 @@
 import styles from "./MeetupItem.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import { useRouter } from "next/router";
 
 function MeetupItem(props) {
+  const router = useRouter();
+  function navigateToMeetupDetail() {
+    router.push(`/${props.id}`);
+  }
+
   return (
     <li className={styles["item"]}>
       <Card>
@@ -11,10 +17,11 @@ function MeetupItem(props) {
         </div>
         <div className={styles["content"]}>
           <h3>{props.title}</h3>
-          <address>{props.address}</address>
+          <p className={styles["desc"]}>{props.description}</p>
+          <address>{`Address:- ${props.address}`}</address>
         </div>
         <div className={styles["actions"]}>
-          <Button>Show Details</Button>
+          <Button onClick={navigateToMeetupDetail}>Show Details</Button>
         </div>
       </Card>
     </li>
