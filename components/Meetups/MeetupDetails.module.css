@@ -34,3 +34,10 @@
   font-size: 1.25rem;
   margin-block: 0;
 }
+
+.action {
+  margin: 0 1rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}

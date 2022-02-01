@@ -4,6 +4,7 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import useInput from "../../hooks/useInput";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 function MeetupForm(props) {
   let isFormValid = false;
@@ -60,81 +61,90 @@ function MeetupForm(props) {
   function handleFormSubmit(e) {
     e.preventDefault();
     const newMeetup = {
-      id: new Date().getTime(),
+      /* id: from db */
       title: meetupTitle,
       address: meetupAddress,
       image: encodeURI(meetupImage),
       description: meetupDescription,
     };
     props.onAddMeetup(newMeetup);
+
+    //resetting all inputs
+    resetMeetupTitle();
+    resetMeetupImage();
+    resetMeetupAddress();
+    resetMeetupDescription();
   }
 
   return (
-    <Card className={styles["form-card"]}>
-      <form onSubmit={handleFormSubmit}>
-        <Input
-          type="input"
-          label="Meetup Title"
-          error="This field cannot be empty"
-          inputConfig={{
-            type: "text",
-            id: "meetup-title",
-            value: meetupTitle,
-            onChange: handleMeetupTitleChange,
-            onBlur: handleMeetupTitleBlur,
-          }}
-          whenError={isMeetupTitleTouched && !isMeetupTitleValid}
-        />
+    <>
+      {props.isLoading && <LoadingSpinner />}
+      <Card className={styles["form-card"]}>
+        <form onSubmit={handleFormSubmit}>
+          <Input
+            type="input"
+            label="Meetup Title"
+            error="This field cannot be empty"
+            inputConfig={{
+              type: "text",
+              id: "meetup-title",
+              value: meetupTitle,
+              onChange: handleMeetupTitleChange,
+              onBlur: handleMeetupTitleBlur,
+            }}
+            whenError={isMeetupTitleTouched && !isMeetupTitleValid}
+          />
 
-        <Input
-          type="input"
-          label="Meetup Image"
-          error="Please enter a valid URL of an image. Only jpg/png files are supported"
-          inputConfig={{
-            type: "url",
-            id: "meetup-image",
-            value: meetupImage,
-            onChange: handleMeetupImageChange,
-            onBlur: handleMeetupImageBlur,
-          }}
-          whenError={isMeetupImageTouched && !isMeetupImageValid}
-        />
+          <Input
+            type="input"
+            label="Meetup Image"
+            error="Please enter a valid URL of an image. Only jpg/png files are supported"
+            inputConfig={{
+              type: "url",
+              id: "meetup-image",
+              value: meetupImage,
+              onChange: handleMeetupImageChange,
+              onBlur: handleMeetupImageBlur,
+            }}
+            whenError={isMeetupImageTouched && !isMeetupImageValid}
+          />
 
-        <Input
-          type="textarea"
-          label="Meetup Address"
-          error="This field cannot be empty"
-          inputConfig={{
-            type: "text",
-            id: "meetup-address",
-            value: meetupAddress,
-            onChange: handleMeetupAddressChange,
-            onBlur: handleMeetupAddressBlur,
-          }}
-          whenError={isMeetupAddressTouched && !isMeetupAddressValid}
-        />
+          <Input
+            type="textarea"
+            label="Meetup Address"
+            error="This field cannot be empty"
+            inputConfig={{
+              type: "text",
+              id: "meetup-address",
+              value: meetupAddress,
+              onChange: handleMeetupAddressChange,
+              onBlur: handleMeetupAddressBlur,
+            }}
+            whenError={isMeetupAddressTouched && !isMeetupAddressValid}
+          />
 
-        <Input
-          type="textarea"
-          label="Meetup Description"
-          error="This field cannot be empty"
-          inputConfig={{
-            type: "text",
-            id: "meetup-description",
-            value: meetupDescription,
-            onChange: handleMeetupDescriptionChange,
-            onBlur: handleMeetupDescriptionBlur,
-          }}
-          whenError={isMeetupDescriptionTouched && !isMeetupDescriptionValid}
-        />
+          <Input
+            type="textarea"
+            label="Meetup Description"
+            error="This field cannot be empty"
+            inputConfig={{
+              type: "text",
+              id: "meetup-description",
+              value: meetupDescription,
+              onChange: handleMeetupDescriptionChange,
+              onBlur: handleMeetupDescriptionBlur,
+            }}
+            whenError={isMeetupDescriptionTouched && !isMeetupDescriptionValid}
+          />
 
-        <div className={styles["actions"]}>
-          <Button type="submit" disabled={!isFormValid}>
-            Add Meetup
-          </Button>
-        </div>
-      </form>
-    </Card>
+          <div className={styles["actions"]}>
+            <Button type="submit" disabled={!isFormValid}>
+              Add Meetup
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </>
   );
 }
 
