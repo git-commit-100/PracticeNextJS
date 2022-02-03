@@ -12,7 +12,7 @@ body {
 }
 
 :root {
-  --color1: #77002e; /* primary */
-  --color2: #fbe0ea; /* border */
+  --color1: hsl(337, 100%, 23%); /* primary */
+  --color2: hsl(337, 75%, 85%); /* border */
   --errorColor: rgb(187, 7, 7); /* error */
 }

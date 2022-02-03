@@ -8,6 +8,7 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 
 function MeetupForm(props) {
   let isFormValid = false;
+  const todaysDate = new Date();
   const {
     inputValue: meetupTitle,
     isInputTouched: isMeetupTitleTouched,
@@ -49,11 +50,21 @@ function MeetupForm(props) {
     resetInput: resetMeetupDescription,
   } = useInput((desc) => desc.trim() !== "");
 
+  const {
+    inputValue: meetupDate,
+    isInputTouched: isMeetupDateTouched,
+    isInputValid: isMeetupDateValid,
+    handleInputChange: handleMeetupDateChange,
+    handleInputBlur: handleMeetupDateBlur,
+    resetInput: resetMeetupDate,
+  } = useInput((date) => date.trim() !== "" && new Date(date) > todaysDate);
+
   if (
     isMeetupTitleValid &&
     isMeetupImageValid &&
     isMeetupAddressValid &&
-    isMeetupDescriptionValid
+    isMeetupDescriptionValid &&
+    isMeetupDateValid
   ) {
     isFormValid = true;
   }
@@ -66,6 +77,7 @@ function MeetupForm(props) {
       address: meetupAddress,
       image: encodeURI(meetupImage),
       description: meetupDescription,
+      dateOfEvent: meetupDate,
     };
     props.onAddMeetup(newMeetup);
 
@@ -74,6 +86,7 @@ function MeetupForm(props) {
     resetMeetupImage();
     resetMeetupAddress();
     resetMeetupDescription();
+    resetMeetupDate();
   }
 
   return (
@@ -121,6 +134,20 @@ function MeetupForm(props) {
               onBlur: handleMeetupAddressBlur,
             }}
             whenError={isMeetupAddressTouched && !isMeetupAddressValid}
+          />
+
+          <Input
+            type="input"
+            label="Meetup Event Date"
+            error="Please enter a valid date. Only future dates can be inserted"
+            inputConfig={{
+              type: "date",
+              id: "meetup-date",
+              value: meetupDate,
+              onChange: handleMeetupDateChange,
+              onBlur: handleMeetupDateBlur,
+            }}
+            whenError={isMeetupDateTouched && !isMeetupDateValid}
           />
 
           <Input

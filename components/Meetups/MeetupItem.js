@@ -17,8 +17,9 @@ function MeetupItem(props) {
         </div>
         <div className={styles["content"]}>
           <h3>{props.title}</h3>
-          <p className={styles["desc"]}>{props.description}</p>
-          <address>{`Address:- ${props.address}`}</address>
+          <p className={styles["date"]}>Date Of Meetup: {props.dateOfEvent}</p>
+          {/* <p className={styles["desc"]}>{props.description}</p> */}
+          {/* <address>{`Address:- ${props.address}`}</address> */}
         </div>
         <div className={styles["actions"]}>
           <Button onClick={navigateToMeetupDetail}>Show Details</Button>

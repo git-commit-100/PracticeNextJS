@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 function MeetupDetails(props) {
   const router = useRouter();
-  const { image, title, address, description } = props;
+  const { image, title, address, description, dateOfEvent } = props;
 
   return (
     <Card>
@@ -14,9 +14,18 @@ function MeetupDetails(props) {
         <img src={image} alt={title} />
       </div>
       <div className={styles["content"]}>
-        <h3>{title}</h3>
-        <p className={styles["desc"]}>{description}</p>
-        <address>{`Address:- ${address}`}</address>
+        <h4>
+          Title: <p>{title}</p>
+        </h4>
+        <h4 className={styles["date"]}>
+          Date Of Meetup: <p>{dateOfEvent}</p>
+        </h4>
+        <h4 className={styles["desc"]}>
+          Description: <p>{description}</p>
+        </h4>
+        <h4 className={styles["address"]}>
+          Address: <address>{address}</address>
+        </h4>
       </div>
       <div className={styles["action"]}>
         <Button onClick={() => router.back()}>Go Back</Button>

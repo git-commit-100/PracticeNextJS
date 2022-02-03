@@ -1,29 +1,20 @@
-import { useEffect, useState } from "react";
-import LoadingSpinner from "../components/UI/LoadingSpinner";
-import useHttp from "../hooks/useHttp";
 import MeetupsList from "../components/Meetups/MeetupsList";
 import { MongoClient } from "mongodb";
-
-const DUMMY_MEETUPS = [
-  {
-    id: 1,
-    title: "Meetup 1",
-    image:
-      "https://s3.india.com/travel/wp-content/uploads/2016/05/Kitty-Su.jpg",
-    address: "Behind India Gate",
-    description: "Best Clubs of India",
-  },
-  {
-    id: 2,
-    title: "Meetup 2",
-    image: "https://s3.india.com/travel/wp-content/uploads/2016/05/Shiro.jpg",
-    address: "In Mumbai",
-    description: "Best Clubs of Mumbai",
-  },
-];
+import Head from "next/head";
 
 function HomePage(props) {
-  return <MeetupsList meetups={props.meetups} />;
+  return (
+    <>
+      <Head>
+        <title>Meetups Manager</title>
+        <meta
+          title="Meetups Manager with NextJS"
+          content="Organize, plan and share your meetups or events with the world"
+        />
+      </Head>
+      <MeetupsList meetups={props.meetups} />
+    </>
+  );
 }
 
 //constructs props for component on server to enhance pre-rendering or for SEO
@@ -45,13 +36,14 @@ export const getStaticProps = async () => {
       title: meetup.title,
       address: meetup.address,
       description: meetup.description,
+      dateOfEvent: meetup.dateOfEvent,
     };
   });
   return {
     props: {
       meetups: meetupArray,
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 

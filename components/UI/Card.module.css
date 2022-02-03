@@ -5,10 +5,20 @@
   background-color: white;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   padding: 0;
+  animation: fadeIn 0.8s ease;
 }
 
 @media (max-width: 1145px) {
   .card {
     width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

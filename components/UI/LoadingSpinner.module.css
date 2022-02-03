@@ -14,7 +14,7 @@ div.spinner-div {
 
 div.spinner {
   position: relative;
-  top: -5rem;
+  top: -2rem;
   width: 100px;
   height: 100px;
   border: 10px solid var(--color1);

@@ -2,6 +2,7 @@ import MeetupForm from "../../components/Meetups/MeetupForm";
 import useHttp from "../../hooks/useHttp";
 import Notification from "../../components/UI/Notification";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 function NewMeetupPage() {
   const [notification, setNotification] = useState(null);
@@ -47,6 +48,13 @@ function NewMeetupPage() {
 
   return (
     <>
+      <Head>
+        <title>Add a New Meetup</title>
+        <meta
+          title="Adding a New Meetup"
+          content="Add a new meetup and share with the ones you love"
+        />
+      </Head>
       {notification}
       <MeetupForm
         onAddMeetup={handleAddingNewMeetup}
