@@ -64,6 +64,8 @@ export const getStaticProps = async (ctx) => {
     _id: ObjectId(idFromParams),
   });
 
+  client.close();
+
   return {
     props: {
       meetupData: {
